@@ -1,4 +1,3 @@
-
 /*
  * This software is in the public domain under CC0 1.0 Universal plus a 
  * Grant of Patent License.
@@ -18,9 +17,10 @@ import org.junit.platform.suite.api.SelectClasses
 import org.junit.platform.suite.api.Suite
 import org.moqui.Moqui
 
+// NOTE: OrderTenantAccess.class temporarily removed, to be replaced with similar instance access functionality
 @Suite
-@SelectClasses([ StartScreens.class ])
-class StartSuite {
+@SelectClasses([ RestApiTests.class ])
+class startSuite {
     @AfterAll
     static void destroyMoqui() {
         Moqui.destroyActiveExecutionContextFactory()
