@@ -81,7 +81,7 @@ test {
     useJUnitPlatform()
     testLogging { events "passed", "skipped", "failed" }
     testLogging.showStandardStreams = true; testLogging.showExceptions = true
-    maxParallelForks 1
+    maxParallelForks = 1
 
     dependsOn cleanTest
     include '**/startSuite.class'
