@@ -66,8 +66,12 @@ jar {
     archiveBaseName = jarBaseName
 }
 task copyDependencies { doLast {
-    copy { from (configurations.runtimeClasspath - project(':framework').configurations.runtimeClasspath - project(':framework').jar.archivePath)
-        into file(projectDir.absolutePath + '/lib') }
+    copy {
+        from (configurations.runtimeClasspath -
+              project(':framework').configurations.runtimeClasspath -
+              project(':framework').tasks.jar.archiveFile.get().asFile)
+        into file(projectDir.absolutePath + '/lib')
+    }
 } }
 copyDependencies.dependsOn cleanLib
 jar.dependsOn copyDependencies
@@ -77,7 +81,7 @@ test {
     useJUnitPlatform()
     testLogging { events "passed", "skipped", "failed" }
     testLogging.showStandardStreams = true; testLogging.showExceptions = true
-    maxParallelForks 1
+    maxParallelForks = 1
 
     dependsOn cleanTest
     include '**/startSuite.class'
